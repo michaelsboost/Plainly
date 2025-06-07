@@ -83,11 +83,11 @@ Want to help make Plainly better?
 ### 📜 License
 Licensed under the MIT License — free to use, remix, and distribute.
 
-Developed by: [Michael Schwartz](https://michaelsboost.com/)
+Developed by: [Michael Schwartz](https://michaelsboost.com/)  
 Maintained by: The open-source community
 
 ## **☕ Support the Developer**
-If RITE was helpful for you, consider showing your appreciation in the following ways:
+If Plainly was helpful for you, consider showing your appreciation in the following ways:
 
 - 🎨 Check out my Graphic Design Course: https://michaelsboost.com/graphicdesign  
 - 🛒 Register as a customer on my store: https://michaelsboost.com/store  
