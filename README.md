@@ -33,7 +33,7 @@ Plainly is about speed, clarity, and ownership of your writing.
 - **.pdf** (styled)  
 - **.html** (clean, portable)  
 - **.md** (original source)  
-- **.zip** (full project backup)
+- **.json** (full project backup)
 
 **📂 Project Import/Export**  
 - Load and save full projects as `.json`  
