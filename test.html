@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <title>Plainly</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, interactive-widget=resizes-content">
+    <meta name="description" content="Create Markdown files with live preview and export to DOCX, PDF, and more – right in your browser.">
+    <meta name="author" content="Michael Schwartz">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Plainly">
+    <meta name="theme-color" content="hsl(205deg 18.75% 87.45%)">
+    <meta name="apple-mobile-web-app-title" content="Plainly">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-starturl" content="./index.html">
+    <meta name="msapplication-navbutton-color" content="hsl(205deg 18.75% 87.45%)">
+    <meta property="og:url" content="https://michaelsboost.com/Plainly" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Plainly" />
+    <meta property="og:description" content="Create Markdown files with live preview and export to DOCX, PDF, and more – right in your browser." />
+    <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.svg">
+    <link rel="icon" type="image/svg+xml" href="imgs/logo.svg" />
+    <link rel="apple-touch-icon" href="imgs/logo.svg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/picocss/2.0.6/pico.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="src/bundle.css">
+  </head>
+  <body>
+
+<div class="flex flex-col-reverse sm:flex-col absolute inset-0 overflow-hidden">
+  <!-- menubar -->
+  <div class="flex-[0] border-0 border-b border-solid border-gray-800" data-theme="border">
+    <div class="flex justify-between items-center overflow-auto">
+      <div class="p-1 w-full">
+        <input id="projectName" type="text" style="margin: 0;" placeholder="filename" oninput="PlainlyState.name = this.value; autosavePlainly();">
+      </div>
+      
+      <button aria-label="open menu" name="open menu" class="border-0 bg-transparent text-[#e77b66] text-sm focus:shadow-none" onclick="openMenu()">
+        <svg class="h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor" stroke-dasharray="20" stroke-dashoffset="20" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <path d="M4 9h17">
+              <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.2s" values="20;0"></animate>
+            </path>
+            <path d="M3 15h17">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.2s" dur="0.2s" values="20;0"></animate>
+            </path>
+            <path d="M10 3l-2 18">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.2s" values="20;0"></animate>
+            </path>
+            <path d="M16 3l-2 18">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s" values="20;0"></animate>
+            </path>
+          </g>
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <div class="flex flex-[1] flex-col flex-col-reverse sm:flex-row">
+    <div class="flex flex-[1] flex-col flex-col-reverse md:flex-col relative w-full sm:w-96 h-full border-0 border-t sm:border-0 sm:border-r border-solid border-gray-800" data-theme="border"> 
+      <div class="relative h-full" data-panel="code">
+        <textarea id="input" class="w-full h-full resize-none rounded-none m-0 text-sm bg-transparent border-0" style="color: unset;" placeholder="Markdown code here..." oninput="
+            PlainlyState.md = this.value;
+            autosavePlainly();
+            updatePreview();"></textarea>
+      </div>
+    </div>
+  
+    <div class="flex-[1] w-full overflow-hidden flex">
+      <div class="relative w-full h-full border-0 overflow-auto p-4">
+        <nav class="absolute inset-0 flex flex-col">
+          <div class="flex-[2] overflow-hidden">
+            <div class="relative grid grid-cols-1 align-center items-center w-full h-full">
+              <div id="previewElm" class="relative grid grid-cols-1 align-center items-center w-full h-full">
+                <iframe id="iframe" class="bg-white" style="width: 100%; height: 100%" allowfullscreen="true" allowtransparency="false" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups-to-escape-sandbox allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" loading="lazy" src="blob:https://michaelsboost.com/"></iframe>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div> 
+</div>
+
+    <script src="https://michaelsboost.com/TailwindCSSMod/tailwind-mod-noreset.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docx@8.4.0/build/index.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <script src="dist/script.js" type="module"></script>
+  </body>
+</html>

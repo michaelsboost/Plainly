@@ -1,0 +1,72 @@
+<!-- flexbox for panels and preview --> 
+<div class="flex flex-col-reverse sm:flex-col absolute inset-0 overflow-hidden">
+  <!-- menubar -->
+  <div class="flex-[0] border-0 border-b border-solid border-gray-800" data-theme="border">
+    <div class="flex justify-between items-center overflow-auto">
+      <div class="p-1 w-full">
+        <input id="projectName" type="text" style="margin: 0;" placeholder="filename" oninput="PlainlyState.name = this.value; autosavePlainly();" />
+      </div>
+      
+      <button
+        aria-label="open menu"
+        name="open menu"
+        class="border-0 bg-transparent text-[#e77b66] text-sm focus:shadow-none"
+        onclick="openMenu()"
+      >
+        <svg class="h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor" stroke-dasharray="20" stroke-dashoffset="20" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <path d="M4 9h17">
+              <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.2s" values="20;0"/>
+            </path>
+            <path d="M3 15h17">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.2s" dur="0.2s" values="20;0"/>
+            </path>
+            <path d="M10 3l-2 18">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.2s" values="20;0"/>
+            </path>
+            <path d="M16 3l-2 18">
+              <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s" values="20;0"/>
+            </path>
+          </g>
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <div class="flex flex-[1] flex-col flex-col-reverse sm:flex-row">
+    <div 
+     class="flex flex-[1] flex-col flex-col-reverse md:flex-col relative w-full sm:w-96 h-full border-0 border-t sm:border-0 sm:border-r border-solid border-gray-800" 
+     data-theme="border"> 
+      <div class="relative h-full" data-panel="code">
+        <textarea 
+          id="input" 
+          class="w-full h-full resize-none rounded-none m-0 text-sm bg-transparent border-0"
+          style="color: unset;"
+          placeholder="Markdown code here..."
+          oninput="
+            PlainlyState.md = this.value;
+            autosavePlainly();
+            updatePreview();"
+        ></textarea>
+      </div>
+    </div>
+  
+    <div class="flex-[1] w-full overflow-hidden flex">
+      <div class="relative w-full h-full border-0 overflow-auto p-4">
+        <nav class="absolute inset-0 flex flex-col">
+          <div class="flex-[2] overflow-hidden">
+            <div class="relative grid grid-cols-1 align-center items-center w-full h-full">
+              <div id="previewElm" class="relative grid grid-cols-1 align-center items-center w-full h-full">
+                <iframe 
+                  id="iframe"
+                  class="bg-white"
+                  style="width: 100%; height: 100%"
+                  allowfullscreen="true" allowtransparency="false" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups-to-escape-sandbox allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" loading="lazy" src="blob:https://michaelsboost.com/"></iframe>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div> 
+</div>
