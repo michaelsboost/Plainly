@@ -3,14 +3,45 @@
   <!-- menubar -->
   <div class="flex-[0] border-0 border-b border-solid border-gray-800" data-theme="border">
     <div class="flex justify-between items-center overflow-auto">
+      <button 
+        id="icon"
+        aria-label="open menu"
+        name="open menu"
+        class="border-0 bg-transparent text-sm focus:shadow-none"
+        style="color: unset;"
+        onclick="toggleEditor()"
+      >
+        <svg class="h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor">
+            <!-- First path -->
+            <path d="M10.55 3c-3.852.007-5.87.102-7.159 1.39C2 5.783 2 8.022 2 12.5s0 6.717 1.391 8.109C4.783 22 7.021 22 11.501 22c4.478 0 6.717 0 8.108-1.391c1.29-1.29 1.384-3.307 1.391-7.16"
+                  stroke-dasharray="60" stroke-dashoffset="60">
+              <animate attributeName="stroke-dashoffset" dur="0.2s" values="60;0" fill="freeze" />
+            </path>
+            
+            <!-- Second path -->
+            <path d="M11.056 13C10.332 3.866 16.802 1.276 21.98 2.164c.209 3.027-1.273 4.16-4.093 4.684c.545.57 1.507 1.286 1.403 2.18c-.074.638-.506.95-1.372 1.576c-1.896 1.37-4.093 2.234-6.863 2.396"
+                  stroke-dasharray="50" stroke-dashoffset="50">
+              <animate attributeName="stroke-dashoffset" dur="0.2s" values="50;0" fill="freeze" begin="0.2s" />
+            </path>
+            
+            <!-- Third path -->
+            <path d="M9 17c2-5.5 3.96-7.364 6-9"
+                  stroke-dasharray="15" stroke-dashoffset="15">
+              <animate attributeName="stroke-dashoffset" dur="0.5s" values="15;0" fill="freeze" begin="0.5s" />
+            </path>
+          </g>
+        </svg>
+      </button>
+      
       <div class="p-1 w-full">
-        <input id="projectName" type="text" style="margin: 0;" placeholder="filename" oninput="PlainlyState.name = this.value; autosavePlainly();" />
+        <input id="projectName" type="text"  class="text-center" style="margin: 0;" placeholder="filename" oninput="PlainlyState.name = this.value; autosavePlainly();" />
       </div>
       
       <button
         aria-label="open menu"
         name="open menu"
-        class="border-0 bg-transparent text-[#e77b66] text-sm focus:shadow-none"
+        class="border-0 bg-transparent text-red-400 text-sm focus:shadow-none"
         onclick="openMenu()"
       >
         <svg class="h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -36,8 +67,9 @@
   <div class="flex flex-[1] flex-col flex-col-reverse sm:flex-row">
     <div 
      class="flex flex-[1] flex-col flex-col-reverse md:flex-col relative w-full sm:w-96 h-full border-0 border-t sm:border-0 sm:border-r border-solid border-gray-800" 
-     data-theme="border"> 
-      <div class="relative h-full" data-panel="code">
+     data-theme="border"
+     data-panel="code"> 
+      <div class="relative h-full">
         <textarea 
           id="input" 
           class="w-full h-full resize-none rounded-none m-0 text-sm bg-transparent border-0"
@@ -51,7 +83,7 @@
       </div>
     </div>
   
-    <div class="flex-[1] w-full overflow-hidden flex">
+    <div data-panel="preview" class="flex-[1] w-full overflow-hidden flex">
       <div class="relative w-full h-full border-0 overflow-auto p-4">
         <nav class="absolute inset-0 flex flex-col">
           <div class="flex-[2] overflow-hidden">
