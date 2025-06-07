@@ -1,7 +1,7 @@
 📝 Plainly – Markdown Writing Made Seamless  
 ============================
 
-![](https://raw.githubusercontent.com/michaelsboost/Plainly/gh-pages/imgs/screenshot.jpeg)
+![](https://raw.githubusercontent.com/michaelsboost/Plainly/main/imgs/screenshot.jpeg)
 
 ## 🌟 Overview  
 **Plainly** is a lightweight, browser-based Markdown editor with live preview and powerful export options including **DOCX**, **PDF**, **HTML**, and **.md**. Built for writers, devs, students, and educators—Plainly is fast, clean, and distraction-free.
