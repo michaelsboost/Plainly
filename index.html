@@ -24,11 +24,6 @@
     <link rel="icon" type="image/svg+xml" href="imgs/logo.svg" />
     <link rel="apple-touch-icon" href="imgs/logo.svg">
     <link rel="stylesheet" href="dist/bundle.css">
-    <script src="libraries/FileSaver.min.js"></script>
-    <script src="libraries/marked.min.js"></script>
-    <script src="libraries/index.umd.js"></script>
-    <script src="libraries/html2pdf.bundle.min.js"></script>
-    <script src="libraries/turndown.min.js"></script>
   </head>
   <body>
     <div class="flex flex-col-reverse sm:flex-col absolute inset-0 overflow-hidden">
@@ -107,8 +102,8 @@
       </div> 
     </div>
 
-    <script src="dist/script.js" type="module"></script>
-    <script src="https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-sw.js"></script>
+    <script src="dist/script.js"></script>
+    <!-- <script src="https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-sw.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('./sw.js').then(reg => {
@@ -130,6 +125,6 @@
           registration.active.postMessage({ type: 'SKIP_WAITING' });
         });
       }
-    </script>
+    </script> -->
   </body>
 </html>

@@ -736,18 +736,22 @@ window.updatePreview = () => {
             padding: 0;
             height: 100%;
           }
-          main.container {
-            height: 100vh;
-            overflow-y: auto;
+          body {
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+          }
+          #previewRoot {
+            flex-grow: 1;
+            overflow-y: auto;
             padding: 2rem;
           }
         </style>
       </head>
       <body>
-        <main class="container">
+        <div id="previewRoot">
           ${marked.parse(PlainlyState.md)}
-        </main>
+        </div>
       </body>
     </html>`;
 
@@ -756,7 +760,7 @@ window.updatePreview = () => {
 
     iframe.onload = () => {
       const editor = document.getElementById('input');
-      const preview = iframe.contentDocument?.querySelector('main');
+      const preview = iframe.contentDocument?.getElementById('previewRoot');
       if (!editor || !preview) return;
 
       let isSyncing = false;
