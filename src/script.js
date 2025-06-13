@@ -723,13 +723,26 @@ window.updatePreview = () => {
   previewTimeout = setTimeout(() => {
     const iframe = document.getElementById('iframe');
     if (!iframe) return;
-    
+
     const html = `<!DOCTYPE html>
     <html>
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/2.0.6/pico.min.css">
+        <style>
+          html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+          }
+          main.container {
+            height: 100vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+            padding: 2rem;
+          }
+        </style>
       </head>
       <body>
         <main class="container">
@@ -737,9 +750,55 @@ window.updatePreview = () => {
         </main>
       </body>
     </html>`;
-    
+
     const blobURL = createBlobURL(html, 'text/html');
     iframe.src = blobURL;
+
+    iframe.onload = () => {
+      const editor = document.getElementById('input');
+      const preview = iframe.contentDocument?.querySelector('main');
+      if (!editor || !preview) return;
+
+      let isSyncing = false;
+      let syncSource = null;
+
+      function syncScroll(from, to) {
+        if (!from || !to) return;
+
+        const fromRatio = from.scrollTop / (from.scrollHeight - from.clientHeight);
+        const targetScrollTop = fromRatio * (to.scrollHeight - to.clientHeight);
+
+        const diff = Math.abs(to.scrollTop - targetScrollTop);
+        if (diff > 2) {
+          to.scrollTop = targetScrollTop;
+        }
+      }
+
+      function handleEditorScroll() {
+        if (isSyncing || syncSource === 'preview') return;
+        syncSource = 'editor';
+        isSyncing = true;
+        requestAnimationFrame(() => {
+          syncScroll(editor, preview);
+          isSyncing = false;
+          syncSource = null;
+        });
+      }
+
+      function handlePreviewScroll() {
+        if (isSyncing || syncSource === 'editor') return;
+        syncSource = 'preview';
+        isSyncing = true;
+        requestAnimationFrame(() => {
+          syncScroll(preview, editor);
+          isSyncing = false;
+          syncSource = null;
+        });
+      }
+
+      editor.addEventListener('scroll', handleEditorScroll);
+      preview.addEventListener('scroll', handlePreviewScroll);
+    };
   }, 300);
 };
 
@@ -755,7 +814,6 @@ window.autosavePlainly = () => {
 const autosave = localStorage.getItem('plainly_autosave');
 if (autosave) {
   PlainlyState = JSON.parse(autosave);
-  
   init();
 }
 
@@ -785,6 +843,4 @@ function init() {
   input.value = PlainlyState.md;
   updatePreview();
 }
-document.addEventListener('DOMContentLoaded', function() {
-  init();
-});
+document.addEventListener('DOMContentLoaded', () => init());
